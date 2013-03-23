@@ -5,6 +5,10 @@
  * 
  *  Cache.java Class
  */
+
+
+import java.util.*;
+
 public class Cache {
     
     private int cacheSize;
@@ -14,9 +18,27 @@ public class Cache {
     
     int[] setsInCache = new int[numSets];
     
-    void accessMemory() {
+    public Cache() {
+        
+        
+    }
+    
+    public void accessMemory() {
+        
         
         System.out.println("method to access memory");
+        
+    }
+    
+    public int getBlocksize() {
+       
+        System.out.println("\tenter a block size: ");
+                
+        Scanner in = new Scanner(System.in);
+        blockSize = in.nextInt();
+        
+        
+        return blockSize; 
         
     }
      
