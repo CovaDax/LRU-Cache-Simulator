@@ -51,13 +51,7 @@ public class cacheSimulator {
         
     }
 
-    
-    
-    
- public void readFile(){
-        FileReader FS = new FileReader(trace);
-        BufferedReader IS = new BufferedReader(FS);
- }   
+  
     
     
 }
