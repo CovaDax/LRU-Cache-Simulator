@@ -25,6 +25,7 @@ public class cacheSimulator {
         Cache c = new Cache(); //create a class object
         Set s = new Set();
         Block b = new Block();
+        readFile f = new readFile();
         
         System.out.println("\t" + " " + c.getCachesize() + "-Bytes.");
         System.out.println("\t" + " " +  c.getBlocksize() + "-Bytes.");
@@ -44,8 +45,12 @@ public class cacheSimulator {
         else{
             Associativity=c.getAssociativity();
         }
-        
-            
+        try {
+            //test
+            f.openFile();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
   
         
         

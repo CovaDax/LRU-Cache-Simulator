@@ -8,25 +8,43 @@
  * @author covadax
  */
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.DataInputStream;
+import java.io.BufferedInputStream;
+import java.io.File;
 
 
 public class readFile {
-    private String path;
-    public readFile(String file_path){
-        path=file_path;
-        
+    public readFile(){
     }
     
-    public String openFile() throws IOException{
-       FileReader fr = new FileReader(path); 
-       BufferedReader traceReader = new BufferedReader(fr);
+    public void openFile() throws IOException{
+    File file = new File("trace");
+    FileInputStream fis = null;
+    BufferedInputStream bis = null;
+    DataInputStream dis = null;
+    
+    try{
+        fis = new FileInputStream(file);
         
-       int numLines = 5;
-       String[] traced = new String[numLines];
-       traceReader.readLine();
-       
-       return path;
+        bis = new BufferedInputStream(fis);
+        dis = new DataInputStream(bis);
+        
+        while (dis.available()!=0){
+            System.out.println(dis.readLine());
+        }
+        
+        fis.close();
+        bis.close();
+        dis.close();
+    }
+    catch(FileNotFoundException e){
+        e.printStackTrace();
+    }
+    catch(IOException e){
+        e.printStackTrace();
     }
 }
