@@ -22,17 +22,9 @@ public class cacheSimulator {
     
     public static void main(String[] args) {
         
-        cacheSimulator CS = new cacheSimulator();
         Cache c = new Cache(); //create a class object
-        
-        try {
-        FileInputStream FS = new FileInputStream("trace");
-        InputStreamReader IS = new InputStreamReader(FS);
-        }
-       
-        catch(Exception e) {
-                    
-        }
+        Set s = new Set();
+        Block b = new Block();
         
         System.out.println("\t" + " " + c.getCachesize() + "-Bytes.");
         System.out.println("\t" + " " +  c.getBlocksize() + "-Bytes.");
@@ -58,5 +50,14 @@ public class cacheSimulator {
         
         
     }
+
+    
+    
+    
+ public void readFile(){
+        FileReader FS = new FileReader(trace);
+        BufferedReader IS = new BufferedReader(FS);
+ }   
+    
     
 }
