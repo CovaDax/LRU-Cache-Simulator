@@ -22,36 +22,30 @@ public class cacheSimulator {
     
     public static void main(String[] args) {
         
-        Cache c = new Cache(); //create a class object
+        // Welcome Message
+        
+        System.out.println("----------------------");
+        System.out.println("      Welcome To      ");
+        System.out.println(" cache");
+        System.out.println("----------------------");
+        
+        
+        
+        // Creating Objects
+        
+        Cache c = new Cache(); 
         Set s = new Set();
         Block b = new Block();
         
-        System.out.println("\t" + " " + c.getCachesize() + "-Bytes.");
-        System.out.println("\t" + " " +  c.getBlocksize() + "-Bytes.");
-        int Associativity = c.getAssociativity();
-        if (Associativity==0){
-            System.out.println("\t" + " Direct Mapped Cache");
-        }
-        else if (Associativity==2){
-            System.out.println("\t" + "Two-Way Associativity");
-        }
-        else if (Associativity==4){
-            System.out.println("\t" + "Four-Way Associativity");
-        }
-        else if (Associativity==8){
-            System.out.println("\t" + "Eight-Way Associativity");
-        }
-        else{
-            Associativity=c.getAssociativity();
-        }
         
-            
-  
         
+        
+        
+        
+     
         
     }
 
   
-    
-    
+   
 }
