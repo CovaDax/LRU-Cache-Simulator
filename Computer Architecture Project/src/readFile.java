@@ -9,42 +9,44 @@
  */
 import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.DataInputStream;
-import java.io.BufferedInputStream;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
+import java.nio.file.Path;
 
 
 public class readFile {
     public readFile(){
     }
     
-    public void openFile() throws IOException{
-    File file = new File("trace");
-    FileInputStream fis = null;
-    BufferedInputStream bis = null;
-    DataInputStream dis = null;
-    
-    try{
-        fis = new FileInputStream(file);
+    public String[] openFile() throws IOException{
+        String file="C:\\Users\\Gerald XXI\\workspace\\Java\\Computer_Architecture_Project\\Computer Architecture Project\\src\\trace";
+        String line = null;
+        List<String> lines = new ArrayList<String>();
         
-        bis = new BufferedInputStream(fis);
-        dis = new DataInputStream(bis);
-        
-        while (dis.available()!=0){
-            System.out.println(dis.readLine());
+        try{
+            FileReader fr = new FileReader(file);
+            BufferedReader br=new BufferedReader(fr);
+            
+            while((line=br.readLine()) != null){
+            lines.add(line);
+            System.out.println(line);
+            }
+            
+            br.close();
         }
         
-        fis.close();
-        bis.close();
-        dis.close();
+        catch(FileNotFoundException ex){
+            System.out.println("Unable to open file '" + file + "'");
+        }
+        catch(IOException ex){
+            System.out.println("Error reading file '" + file + "'");
+        }
+        
+       return lines.toArray(new String[lines.size()]);
+
     }
-    catch(FileNotFoundException e){
-        e.printStackTrace();
-    }
-    catch(IOException e){
-        e.printStackTrace();
-    }
+    
 }
