@@ -32,6 +32,7 @@ public class readFile {
                 while((line=br.readLine()) != null){
                 lines.add(line);
                 System.out.println(line);
+              
                 }
             }
         }

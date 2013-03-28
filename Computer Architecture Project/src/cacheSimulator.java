@@ -37,13 +37,38 @@ public class cacheSimulator {
         readFile f = new readFile();
         
         
-        String dataFile[];
-        dataFile = f.openFile();
+       // String dataFile[];
+        //dataFile = f.openFile();
+        
+     
+        System.out.println("Miss rates for a 8-Byte block");
+        System.out.println("\t1024, 2048, 4096, 8192");
+        System.out.println("direct: <value, value, value, value>");
+        System.out.println("2-way:  <value, value, value, value>");
+        System.out.println("4-way:  <value, value, value, value>");
+        System.out.println("8-way:  <value, value, value, value>");
+        
+        System.out.println("");
+        
+        System.out.println("Miss rates for a 16-Byte block");
+        System.out.println("\t1024, 2048, 4096, 8192");
+        System.out.println("direct: <value, value, value, value>");
+        System.out.println("2-way:  <value, value, value, value>");
+        System.out.println("4-way:  <value, value, value, value>");
+        System.out.println("8-way:  <value, value, value, value>");
+       
+        System.out.println("");
+        
+        System.out.println("Miss rates for a 32-Byte block");
+        System.out.println("\t1024, 2048, 4096, 8192");
+        System.out.println("direct: <value, value, value, value>");
+        System.out.println("2-way:  <value, value, value, value>");
+        System.out.println("4-way:  <value, value, value, value>");
+        System.out.println("8-way:  <value, value, value, value>");
+       
        
         
         
-        
-     
         
     }
 
