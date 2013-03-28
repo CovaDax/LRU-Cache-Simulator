@@ -1,11 +1,11 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * The class takes the path from the user in the main method and 
+ * converts the addresses to binary.
  */
 
 /**
  *
- * @author covadax
+ * @author Andrew Gari
  */
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -21,18 +21,22 @@ public class readFile {
     public readFile(){
     }
     
-    public String[] openFile() throws IOException {
-        String file="src\\trace";
+    public String[] openFile(String file) throws IOException {
+        //String file="src//trace";
         String line = null;
+        Long Address = null;
         List<String> lines = new ArrayList<String>();
         
         try{
             FileReader fr = new FileReader(file);
             try (BufferedReader br = new BufferedReader(fr)) {
                 while((line=br.readLine()) != null){
+                    Address = Long.parseLong(line,16);
+                    line = Long.toBinaryString(Address);
                 lines.add(line);
-                System.out.println(line);
+                //System.out.println(line);
                 }
+                
             }
         }
         
@@ -46,5 +50,12 @@ public class readFile {
        return lines.toArray(new String[lines.size()]);
 
     }
+//
+//    private int toBinaryString(String line) {
+//        int StoI;
+//        parseLong();
+//        return StoI;
+//        
+//    }
     
 }
