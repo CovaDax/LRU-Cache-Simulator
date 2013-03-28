@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
+import java.io.InputStream;
 import java.nio.file.Path;
 
 
@@ -22,7 +23,7 @@ public class readFile {
     }
     
     public String[] openFile() throws IOException{
-        String file="C:\\Users\\Gerald XXI\\workspace\\Java\\Computer_Architecture_Project\\Computer Architecture Project\\src\\trace";
+        String file = readFile.class.getClassLoader().getResource("trace").toString();
         String line = null;
         List<String> lines = new ArrayList<String>();
         
