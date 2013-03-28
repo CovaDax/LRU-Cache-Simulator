@@ -9,6 +9,7 @@
  */
 
 import java.io.*;
+import java.util.Scanner;
 
 
 public class cacheSimulator {
@@ -35,12 +36,14 @@ public class cacheSimulator {
         Set s = new Set();
         Block b = new Block();
         readFile f = new readFile();
+        String File = null;
+        System.out.println("Please enter the path to your trace file:\t");
+        Scanner in = new Scanner(System.in);
         
+       String dataFile[];
+       dataFile = f.openFile();
         
-       // String dataFile[];
-        //dataFile = f.openFile();
-        
-     
+     /*
         System.out.println("Miss rates for a 8-Byte block");
         System.out.println("\t1024, 2048, 4096, 8192");
         System.out.println("direct: <value, value, value, value>");
@@ -65,7 +68,7 @@ public class cacheSimulator {
         System.out.println("2-way:  <value, value, value, value>");
         System.out.println("4-way:  <value, value, value, value>");
         System.out.println("8-way:  <value, value, value, value>");
-       
+       */
        
         
         
