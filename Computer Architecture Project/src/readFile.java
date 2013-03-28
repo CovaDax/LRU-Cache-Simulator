@@ -21,10 +21,8 @@ public class readFile {
     public readFile(){
     }
     
-    public String[] openFile() throws IOException{
-        String file2="C:\\Users\\Gerald XXI\\workspace\\Java\\Computer_Architecture_Project\\Computer Architecture Project\\src\\trace";
+    public String[] openFile() throws IOException {
         String file="src\\trace";
-        //String file2 = readFile.class.getClassLoader().getResource("C:\\Users\\Gerald XXI\\workspace\\Java\\Computer_Architecture_Project\\Computer Architecture Project\\src\\trace").toString();
         String line = null;
         List<String> lines = new ArrayList<String>();
         
