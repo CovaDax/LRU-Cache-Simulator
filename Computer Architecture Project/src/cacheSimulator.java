@@ -11,13 +11,14 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 
 
 public class cacheSimulator {
     
-    /*Creates two variables to determine how many times the cache has been
+    /* Creates two variables to determine how many times the cache has been
      * accessed so far, and one for how many hits you have so far.
      */
     private int accessCount;
@@ -26,8 +27,9 @@ public class cacheSimulator {
     
     public static void main(String[] args) throws IOException {
         
-        // Welcome Message
-       
+      /* ====================================================================*
+       *                        Welcome Message                              *
+       * ====================================================================*/
         System.out.println("--------------------");
         System.out.println("|    Welcome To    |");
         System.out.println("|  Cache Simulator |");
@@ -37,23 +39,27 @@ public class cacheSimulator {
         int cache[] = {1024,2048,4096,8192};
         int block[] = {8,16,32};
         int associativity[] = {1,2,4,8};
-        Cache obj = new Cache(cache[1],block[1],associativity[1]);
-        //Cache caches[]; //Makes an array of class objects to store objects
-        
-        Vector<Cache> caches=new Vector<Cache>(3);
-        Cache tempCache;
-        
-        for(int c=0;c<cache.length -1;c++){
-            for(int b=0;b<block.length -1;b++){
-                for(int n=0;n<associativity.length -1; n++){
-                     tempCache= new Cache(cache[c], block[b],associativity[n]);
-                     caches.add(tempCache);
-                    
+        List<Cache> caches=new ArrayList<Cache>();
+        System.out.println(associativity.length);
+        for(int c=0;c<cache.length;c++){
+            for(int b=0;b<block.length;b++){
+                for(int n=0;n<associativity.length ; n++){
+                     Cache tempCache= new Cache(cache[c], block[b],associativity[n]);
+                     caches.add(tempCache); 
                 }
             }
         }
         
-        
+           //Probe to display the Combinations
+        for (Cache c: caches) {
+            
+        System.out.println("Cahce size: " + c.cacheSize
+                           + "\nBlock Size: " + c.blockSize
+                           + "\nAssociativity:  " + c.Associativity
+                           + "\nNumber of Blocks:   " + c.numBlocks
+                           + "\nNumber of Sets: " + c.numSets
+                           + "\n\n");
+        }
         /*
         Iterator i = caches.iterator();
         while (i.hasNext()){
@@ -62,7 +68,8 @@ public class cacheSimulator {
                            + "\nBlock Size: " + tempCache.blockSize
                            + "\nAssociativity:  " + tempCache.Associativity
                            + "\nNumber of Blocks:   " + tempCache.numBlocks
-                           + "\nNumber of Sets: " + tempCache.numSets);
+                           + "\nNumber of Sets: " + tempCache.numSets
+                           + "\n\n");
         }
         */
         readFile f = new readFile();
@@ -78,7 +85,12 @@ public class cacheSimulator {
        for(int d =0; d< dataFile.length-1; d++){
            System.out.println(dataFile[d]);
        }
-        
+       
+       
+       
+      /* ====================================================================*
+       *                        Final Display                                *
+       * ====================================================================*/
      /*
         System.out.println("Miss rates for a 8-Byte block");
         System.out.println("\t1024, 2048, 4096, 8192");
