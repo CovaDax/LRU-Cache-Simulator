@@ -7,7 +7,7 @@
  *
  * @author Andrew Meyers
  */
-public class Set extends Cache {
+public class Set{
     
     private int numBlocks = 0;
     int[] blocksInSet = new int[numBlocks];

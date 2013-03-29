@@ -7,7 +7,7 @@
  *
  * @author Andrew Meyers, Andrew Gari
  */
-public class Block extends Cache {
+public class Block{
     
     private long blockTag;
     private boolean blockValid;
