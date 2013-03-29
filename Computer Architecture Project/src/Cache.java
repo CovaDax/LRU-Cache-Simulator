@@ -26,6 +26,8 @@ public class Cache {
         Associativity = N;
         numBlocks = cache/block;
         numSets = numBlocks/N;
+        
+        Block B = new Block();
     }
 
     Cache(Object object) {

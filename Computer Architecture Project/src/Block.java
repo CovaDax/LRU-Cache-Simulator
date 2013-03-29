@@ -13,6 +13,12 @@ public class Block{
     private boolean blockValid;
     private int blockLru;
     
+    
+    public Block() {
+        
+        
+    }
+    
     void compareTag() {
         
         

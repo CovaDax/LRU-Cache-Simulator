@@ -49,17 +49,23 @@ public class cacheSimulator {
                 }
             }
         }
-        
+        int combinations = 1;
            //Probe to display the Combinations
         for (Cache c: caches) {
-            
-        System.out.println("Cahce size: " + c.cacheSize
+           
+            System.out.println("\tCombination #" + " "  + combinations);
+            System.out.println("");
+            System.out.println("Cahce size: " + c.cacheSize
                            + "\nBlock Size: " + c.blockSize
                            + "\nAssociativity:  " + c.Associativity
                            + "\nNumber of Blocks:   " + c.numBlocks
                            + "\nNumber of Sets: " + c.numSets
                            + "\n\n");
+            combinations++;
+                        
         }
+        
+ 
         /*
         Iterator i = caches.iterator();
         while (i.hasNext()){
