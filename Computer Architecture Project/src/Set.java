@@ -22,11 +22,12 @@ public class Set{
             this.N=this.numBlocks;
         }
         
-        Block[] b = new Block[numBlocks];
+        blocks = new Block[numBlocks];
         
     }
     
-    void searchBlocksInSet() {   
+    void searchBlocksInSet(int index, int tag) {   
+        blocks[index] = new Block(tag);
     }
     
     void writeBlock() {  

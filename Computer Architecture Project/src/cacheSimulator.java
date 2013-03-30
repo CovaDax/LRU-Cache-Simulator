@@ -38,60 +38,57 @@ public class cacheSimulator {
         int cSize[] = {1024,2048,4096,8192};
         int bSize[] = {8,16,32};
         int n[] = {1,2,4,8};
-        Cache cache = null;
-        List<Cache> caches=new ArrayList<Cache>();
+        String file; Long Address;
+        Cache cache = null; readFile f = new readFile();
+        List<Cache> caches=new ArrayList<Cache>(); String dataFile[];
         
+
+        System.out.print("Please enter the path to your trace file:\t");
+        Scanner in = new Scanner(System.in);
+        file = in.nextLine();
+        
+        dataFile = f.openFile(file);
+       
+       
+       
         for(int b=0;b<bSize.length;b++){
                 for(int k=0;k<n.length ; k++){
                     for(int c=0;c<cSize.length;c++){
-                        cache= new Cache(cSize[c], bSize[b],n[k]);
+                        for(int d=0;d<dataFile.length;d++){
+                            if(d<5)
+                            cache= new Cache(cSize[c], bSize[b],n[k],dataFile[d]);
+                        }
                         caches.add(cache); 
                 }
             }
         }
-        
-        readFile f = new readFile();
-        System.out.print("Please enter the path to your trace file:\t");
-        Scanner in = new Scanner(System.in);
-        String file; Long Address;
-        file = in.nextLine();
-       
-     
-       String dataFile[];
-       dataFile = f.openFile(file);
-
-//       for(int d =0; d< dataFile.length; d++){
-//           if(dataFile[d].length()!=32)
-//            System.out.println(dataFile[d].length());
-//       }
-       
-       
+             
        
        
        int combinations =0;
            //Probe to display the Combinations
-       for (Cache c: caches) {
-           combinations++;
-            System.out.println("\tCombination #" + " "  + combinations);
-            System.out.println("Cahce size: " + c.cacheSize
-                           + "\nBlock Size: " + c.blockSize
-                           + "\nAssociativity:  " + c.N
-                           + "\nNumber of Blocks:   " + c.numBlocks
-                           + "\nNumber of Sets: " + c.numSets
-                           + "\nIndex Width is: " + c.indexWidth
-                           +"\nOffset is: " + c.offsetWidth
-                           +"\nTag Width: " + c.tagWidth
-                           + "\n\n"); 
-            Block block =new Block();
-            for(int s=0;s<c.numSets;s++){
-                for(int b=0;b<c.numBlocks;b++){
-                    for(int d=0; d< dataFile.length; d++){
-                          block.calculateAddress(dataFile[d],c.tagWidth,c.indexWidth, c.offsetWidth);
-                    }
-                }
-            }
-                
-        }
+//       for (Cache c: caches) {
+//           combinations++;
+//            System.out.println("\tCombination #" + " "  + combinations);
+//            System.out.println("Cahce size: " + c.cacheSize
+//                           + "\nBlock Size: " + c.blockSize
+//                           + "\nAssociativity:  " + c.N
+//                           + "\nNumber of Blocks:   " + c.numBlocks
+//                           + "\nNumber of Sets: " + c.numSets
+//                           + "\nIndex Width is: " + c.indexWidth
+//                           +"\nOffset is: " + c.offsetWidth
+//                           +"\nTag Width: " + c.tagWidth
+//                           + "\n\n"); 
+//            Block block =new Block();
+//            for(int s=0;s<c.numSets;s++){
+//                for(int b=0;b<c.numBlocks;b++){
+//                    for(int d=0; d< dataFile.length; d++){
+//                          block.calculateAddress(dataFile[d],c.tagWidth,c.indexWidth, c.offsetWidth);
+//                    }
+//                }
+//            }
+//                
+//        }
        
       /* ====================================================================*
        *                        Final Display                                *
