@@ -9,31 +9,23 @@
  */
 public class Set{
     
-    private int numBlocks = 0;
-    private int[] blocksInSet = new int[numBlocks];
-    private int lru;
+    public int numBlocks = 0;
+    public String[] blocksInSet = new String[numBlocks];
+    public int lru;
     
-    private int offsetWidth;
-    private int indexWidth; 
-    private int tagWidth;
-    
-    public Set(int bSize, int NoSets) {
-        
-        
-        offsetWidth = (int)Math.log(bSize) / (int)Math.log(2);
-        indexWidth = (int)Math.log(NoSets) / (int)Math.log(2);
-        tagWidth = 32 - offsetWidth - indexWidth; 
-        
-        
+    public Set(int noBlocks) {
+        numBlocks=noBlocks;
     }
     
-    void searchBlocksInSet() {
-        
-        
+    void searchBlocksInSet() {   
     }
     
-    void writeBlock() {
-        
-        
+    void writeBlock() {  
     }
+
+    
 }
+
+
+
+

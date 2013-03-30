@@ -9,9 +9,9 @@
  */
 public class Block{
     
-    private long blockTag;
-    private boolean blockValid;
-    private int blockLru;
+    public long blockTag;
+    public boolean blockValid;
+    public int blockLru;
     
     
     public Block() {
