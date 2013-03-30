@@ -10,7 +10,6 @@
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +25,21 @@ public class readFile {
         String line = null;
         Long Address = null;
         List<String> lines = new ArrayList<String>();
-        
+        String zero = null;
         try{
             FileReader fr = new FileReader(file);
             try (BufferedReader br = new BufferedReader(fr)) {
                 while((line=br.readLine()) != null){
                     Address = Long.parseLong(line,16);
                     line = Long.toBinaryString(Address);
+                    if(line.length()<32){
+                        zero="0";
+                        for(int p = 32-line.length()-1; p>0;p--){
+                            zero = zero + "0";
+                        }
+                        line = zero+line;
+                    }
                 lines.add(line);
-                //System.out.println(line);
                 }
                 
             }
@@ -50,12 +55,6 @@ public class readFile {
        return lines.toArray(new String[lines.size()]);
 
     }
-//
-//    private int toBinaryString(String line) {
-//        int StoI;
-//        parseLong();
-//        return StoI;
-//        
-//    }
+
     
 }

@@ -50,18 +50,20 @@ public class cacheSimulator {
             }
         }
         
-        //Cache[] cArr = caches.toArray(new Cache[caches.size()]);
-        
-        
-
         readFile f = new readFile();
         System.out.print("Please enter the path to your trace file:\t");
         Scanner in = new Scanner(System.in);
-        String file;
+        String file; Long Address;
         file = in.nextLine();
-        
+       
+     
        String dataFile[];
        dataFile = f.openFile(file);
+
+//       for(int d =0; d< dataFile.length; d++){
+//           if(dataFile[d].length()!=32)
+//            System.out.println(dataFile[d].length());
+//       }
        
        
        
@@ -73,18 +75,18 @@ public class cacheSimulator {
             System.out.println("\tCombination #" + " "  + combinations);
             System.out.println("Cahce size: " + c.cacheSize
                            + "\nBlock Size: " + c.blockSize
-                           + "\nAssociativity:  " + c.Associativity
+                           + "\nAssociativity:  " + c.N
                            + "\nNumber of Blocks:   " + c.numBlocks
                            + "\nNumber of Sets: " + c.numSets
                            + "\nIndex Width is: " + c.indexWidth
                            +"\nOffset is: " + c.offsetWidth
                            +"\nTag Width: " + c.tagWidth
                            + "\n\n"); 
-            
-            for(int s=0;s<c.numSets-1;s++){
-                for(int b=0;b<c.numBlocks-1;b++){
-                    for(int d=0; d< dataFile.length-1; d++){
-                        c.set[s].blocksInSet[b] = dataFile[d];
+            Block block =new Block();
+            for(int s=0;s<c.numSets;s++){
+                for(int b=0;b<c.numBlocks;b++){
+                    for(int d=0; d< dataFile.length; d++){
+                          block.calculateAddress(dataFile[d],c.tagWidth,c.indexWidth, c.offsetWidth);
                     }
                 }
             }

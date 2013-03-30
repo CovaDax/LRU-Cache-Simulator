@@ -15,7 +15,7 @@ public class Cache {
     public int blockSize;
     public int numSets = 0;
     public int numBlocks = 0;
-    public int Associativity;
+    public int N;
     public int offsetWidth;
     public int indexWidth; 
     public int tagWidth;
@@ -24,7 +24,7 @@ public class Cache {
     int[] setsInCache = new int[numSets];
     
     public Cache(int cache, int block, int N) {
-        cacheSize = cache;blockSize = block;Associativity = N;
+        cacheSize = cache;blockSize = block;this.N = N;
         numBlocks = cache/block; offsetWidth = (int)log2((double)blockSize);
         if(N==1){
             indexWidth = log2((double)numBlocks);
@@ -37,7 +37,7 @@ public class Cache {
         tagWidth = 32 - offsetWidth - indexWidth;
         set=new Set[numSets];
         for(Set s : set){
-            s=new Set(numBlocks);
+            s=new Set(N,numBlocks);
         }
     }
     

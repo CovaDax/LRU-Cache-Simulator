@@ -10,11 +10,20 @@
 public class Set{
     
     public int numBlocks = 0;
-    public String[] blocksInSet = new String[numBlocks];
+    public int N;
+    public int[] blocksInSet = new int[N];
     public int lru;
+    public Block blocks[];
     
-    public Set(int noBlocks) {
-        numBlocks=noBlocks;
+    public Set(int N, int numBlocks) {
+        this.N=N;
+        this.numBlocks=numBlocks;
+        if(N==1){
+            this.N=this.numBlocks;
+        }
+        
+        Block[] b = new Block[numBlocks];
+        
     }
     
     void searchBlocksInSet() {   
