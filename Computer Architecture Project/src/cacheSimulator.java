@@ -10,10 +10,8 @@
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 
 
 public class cacheSimulator {
@@ -25,61 +23,38 @@ public class cacheSimulator {
     private int hitCount;
     
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
         
       /* ====================================================================*
        *                        Welcome Message                              *
        * ====================================================================*/
-        System.out.println("--------------------");
-        System.out.println("|    Welcome To    |");
-        System.out.println("|  Cache Simulator |");
-        System.out.println("--------------------");
+        System.out.println("\t\t\t\t\t ________________________________ ");
+        System.out.println("\t\t\t\t\t|                                |");
+        System.out.println("\t\t\t\t\t|            Welcome To          |");
+        System.out.println("\t\t\t\t\t|         Cache Simulator        |");
+        System.out.println("\t\t\t\t\t|________________________________|");
  
         // Creating Objects as arrays for each possible combination of caches
-        int cache[] = {1024,2048,4096,8192};
-        int block[] = {8,16,32};
-        int associativity[] = {1,2,4,8};
+        int cSize[] = {1024,2048,4096,8192};
+        int bSize[] = {8,16,32};
+        int n[] = {1,2,4,8};
+        Cache cache = null;
         List<Cache> caches=new ArrayList<Cache>();
-        System.out.println(associativity.length);
-        for(int c=0;c<cache.length;c++){
-            for(int b=0;b<block.length;b++){
-                for(int n=0;n<associativity.length ; n++){
-                     Cache tempCache= new Cache(cache[c], block[b],associativity[n]);
-                     caches.add(tempCache); 
+        
+        for(int b=0;b<bSize.length;b++){
+                for(int k=0;k<n.length ; k++){
+                    for(int c=0;c<cSize.length;c++){
+                        cache= new Cache(cSize[c], bSize[b],n[k]);
+                        caches.add(cache); 
                 }
             }
         }
-        int combinations = 1;
-           //Probe to display the Combinations
-        for (Cache c: caches) {
-           
-            System.out.println("\tCombination #" + " "  + combinations);
-            System.out.println("");
-            System.out.println("Cahce size: " + c.cacheSize
-                           + "\nBlock Size: " + c.blockSize
-                           + "\nAssociativity:  " + c.Associativity
-                           + "\nNumber of Blocks:   " + c.numBlocks
-                           + "\nNumber of Sets: " + c.numSets
-                           + "\n\n");
-            combinations++;
-                        
-        }
         
- 
-        /*
-        Iterator i = caches.iterator();
-        while (i.hasNext()){
-               tempCache=(Cache) i.next();
-        System.out.println("Cahce size: " + tempCache.cacheSize
-                           + "\nBlock Size: " + tempCache.blockSize
-                           + "\nAssociativity:  " + tempCache.Associativity
-                           + "\nNumber of Blocks:   " + tempCache.numBlocks
-                           + "\nNumber of Sets: " + tempCache.numSets
-                           + "\n\n");
-        }
-        */
+        //Cache[] cArr = caches.toArray(new Cache[caches.size()]);
+        
+        
+
         readFile f = new readFile();
-        
         System.out.print("Please enter the path to your trace file:\t");
         Scanner in = new Scanner(System.in);
         String file;
@@ -88,11 +63,33 @@ public class cacheSimulator {
        String dataFile[];
        dataFile = f.openFile(file);
        
-       for(int d =0; d< dataFile.length-1; d++){
-           System.out.println(dataFile[d]);
-       }
        
        
+       
+       int combinations =0;
+           //Probe to display the Combinations
+       for (Cache c: caches) {
+           combinations++;
+            System.out.println("\tCombination #" + " "  + combinations);
+            System.out.println("Cahce size: " + c.cacheSize
+                           + "\nBlock Size: " + c.blockSize
+                           + "\nAssociativity:  " + c.Associativity
+                           + "\nNumber of Blocks:   " + c.numBlocks
+                           + "\nNumber of Sets: " + c.numSets
+                           + "\nIndex Width is: " + c.indexWidth
+                           +"\nOffset is: " + c.offsetWidth
+                           +"\nTag Width: " + c.tagWidth
+                           + "\n\n"); 
+            
+            for(int s=0;s<c.numSets-1;s++){
+                for(int b=0;b<c.numBlocks-1;b++){
+                    for(int d=0; d< dataFile.length-1; d++){
+                        c.set[s].blocksInSet[b] = dataFile[d];
+                    }
+                }
+            }
+                
+        }
        
       /* ====================================================================*
        *                        Final Display                                *
