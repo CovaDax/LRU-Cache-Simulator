@@ -18,6 +18,7 @@ import java.util.List;
 
 public class readFile {
     public readFile(){
+        
     }
     
     public String[] openFile(String file) throws IOException {

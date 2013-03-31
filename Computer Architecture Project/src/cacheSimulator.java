@@ -43,9 +43,10 @@ public class cacheSimulator {
         List<Cache> caches=new ArrayList<Cache>(); String dataFile[];
         
 
-        System.out.print("Please enter the path to your trace file:\t");
-        Scanner in = new Scanner(System.in);
-        file = in.nextLine();
+        //System.out.print("Please enter the path to your trace file:\t");
+        //Scanner in = new Scanner(System.in);
+        //file = in.nextLine();
+        file = "src\\trace";
         
         dataFile = f.openFile(file);
        
@@ -56,6 +57,7 @@ public class cacheSimulator {
                     for(int c=0;c<cSize.length;c++){
                         for(int d=0;d<dataFile.length;d++){
                             if(d<5)
+                            System.out.println("Making Cache Constructor");
                             cache= new Cache(cSize[c], bSize[b],n[k],dataFile[d]);
                         }
                         caches.add(cache); 
