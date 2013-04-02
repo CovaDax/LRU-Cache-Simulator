@@ -7,35 +7,46 @@
  *
  * @author Andrew Meyers, Andrew Gari
  */
-import java.lang.String;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Block{
     
-    public long blockTag;
-    public boolean blockValid;
-    public int blockLru;
+    protected long blockTag=0;
+    protected boolean blockValid;
+    protected int hitB, memB;
+    protected int blockLru=0;
     
     
-    public Block() {
-        System.out.println("Block Constructor Made");
+    public Block(int i) {
+        this.blockLru=i;
     }
     
     
     
     
-    void compareTag(long tag) {
-        System.out.println("Function in Block Called.");
+    public boolean compareTag(long tag) {
         if(tag==blockTag){
-            System.out.println("HIT MOTHERFUCKER!!!");
+            return true;
         }
-        
-        blockLru+=blockLru;
+        else{
+            return false;
+        }
     }
     
     void setTag(long tag) {
         blockTag=tag;
     }
     
-}
+    void bHitCount(){
+        hitB++;
+        //return hitB;
+    }
+    
+   
+    
+    int bHitAdd(){
+        return hitB;
+    }
+ 
+            
+}   

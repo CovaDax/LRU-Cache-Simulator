@@ -1,7 +1,3 @@
-
-import java.util.ArrayList;
-import java.util.List;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,44 +9,97 @@ import java.util.List;
  */
 public class Set{
     
-    private int N, numBlocks,lru=0;
-    public int[] blocksInSet = new int[N];
-    private Block blocks[];
+    public int numBlocks, hitS;
+    private int lru = 0;
+    protected boolean[] LRU;
+    public Block block[];
+    public int setNumber;
     
-    List<Block> blockss=new ArrayList<Block>();
-    
-    public Set(int N, int numBlocks) {
-        System.out.println("Set Constructor Made");
-        this.N=N;
+    public Set(int numBlocks, int n, int num) {
+        this.setNumber = num;
         this.numBlocks=numBlocks;
-        if(N==1){
-            this.N=this.numBlocks;
-        }
-        
-        blocks = new Block[numBlocks];
-        //System.out.println("Number of Blocks\t" + this.numBlocks);
-        for(int b=0;b<this.numBlocks;b++){
+        this.block = new Block[numBlocks];
+            LRU = new boolean[n];
+            for(int i=0;i<n;i++){
+                if(i==0){
+                    LRU[0]=true;
+                }
+                else{
+                    LRU[i]=false;
+                }
+            }
             
-            System.out.println("Making Block Constructor");
-            Block block = new Block();
-            blockss.add(block);
-            //blocks[b] = new Block();
+            for (int x = 0; x < numBlocks; x++) {
+                block[x]=new Block(x);//Creates the Block Objects
+            }
+//            
+//            System.out.println("Set " + setNumber + " has " + block.length + " blocks");
+  }
+    
+    void searchBlocksInSet(int index, long tag, int n) {
+        boolean hitB=false;
+        int i=0;
+        int finali=0;
+        int temp=Integer.MAX_VALUE;
+        
+    if(n==1){//Direct Mapped
+               if(block[index].compareTag(tag)==true){
+                    block[index].bHitCount();
+                }
+                else{
+                   writeBlock(index, tag, n);
+                }
+    }
+  //==============================================n-WAY=========================      
+        else{
+            //Check every block for a hit, if you get one, then incriment the hit counter.
+            for(i=0;i<numBlocks;i++){//search every block
+                if(block[i].compareTag(tag)==true){//if the blockTag is equal to the current tag
+                    hitB=true;//set the hit marker to true
+                     block[i].bHitCount();//incriment the set's hit counter
+                    finali = i;//save the loop counter
+                    break;//end the loop
+                }
+             }//there were no hits
+ //=============================================================================
+            for(int j=0;j<numBlocks;j++){//search every block
+                if(hitB==true){//if you had a hit earlier
+                        if(finali==j){//and it was in the LRU
+                            block[j].blockLru=+n;//update the LRU in the current block
+                        }
+                        else{
+                            block[i].blockLru=+n;//update whatever block was hit
+                        }
+                if(block[j].blockLru < temp){//check the block LRU's counter with the temp variable
+                    temp=block[j].blockLru;//if the LRU< temp make temp equal to the smallest element in the block
+                    
+                    }
+                }
+                if(hitB==false){
+                    writeBlock(j,tag,n);
+                    block[j].blockLru=+n;
+                }
+                
+            }
+            
+       i=finali;
+            
+    } 
+    }
+    
+    void writeBlock(int blockNumber, long tag, int n) {
+        block[blockNumber].setTag(tag);
+        
+    }
+    
+    int sHitCount() {
+        for (int i = 0; i < numBlocks; i++) {
+            hitS = hitS + block[i].bHitAdd();
         }
-        
-        
+        return hitS;
     }
-    
-    void searchBlocksInSet(int index, long tag) {   
-        System.out.println("===========================Function in Set Called");
-        blocks[index].compareTag(tag);
-        blocks[index].setTag(tag);
-        
-        
-    }
-    
-    void writeBlock() {  
-    }
-
+         
+ 
     
 }
 
