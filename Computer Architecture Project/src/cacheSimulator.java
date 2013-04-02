@@ -23,8 +23,7 @@ public class cacheSimulator {
     
     private int cacheSize, blockSize, numSets, numBlocks
                 ,N,offsetWidth,indexWidth,tagWidth, index;
-    private String fileTag,fileIndex,fileOffset;
-    private long tag;
+    private String fileTag,fileIndex;
     
     
     
@@ -61,40 +60,23 @@ public class cacheSimulator {
         //System.out.print("Please enter the path to your trace file:\t");
         //Scanner in = new Scanner(System.in);
         //file = in.nextLine();
-        file = "src\\trace";
+        file = "src//trace";
         dataFile = f.openFile(file);
-        
-        /*================================================
-         *                    Direct Mapped      
-         *================================================*/
-//        cache= new Cache(cSize[1], bSize[1],n[0]);
-//        for (int i = 0; i < dataFile.length; i++) {
-//            long Tag = cache.Tag(dataFile[i]);
-//            int Index = cache.Index(dataFile[i]);
-//            cache.set[0].searchBlocksInSet(Index, Tag);
-//            accessCount++;
-//        }
-//        hitCount = cache.addHitSets();
-//        System.out.println("From Main:\t" + hitCount);
-//        System.out.println("From Main:\t" + accessCount);
-//        double HR = cache.hitRatio(hitCount, accessCount);
-//        System.out.println("Miss count =\t" + (1-HR));
-      //============================================================
-        
         
         /*================================================
          *                    2-Way     
          *================================================*/
-        cache = new Cache(cSize[0], bSize[1], n[1]);
-        System.out.println("For Block size: " + bSize[1] + " and cache size: " + cSize[0]);    
-        for (int i = 0; i < dataFile.length ;i++) {
-            //System.out.println("Address:\t" + dataFile[i]);
-            long Tag = cache.Tag(dataFile[i]);
-            int Index = cache.Index(dataFile[i]);
-            cache.accessMemory(Index, Tag);
-        }
-        for(int s=0;s<cache.numSets;s++){
-            for(int b=0;b<cache.set[s].numBlocks;b++){
+        for(int b=0;b<1;b++){
+            for(int c=0;c<1;c++){
+                for(int N=0;N<1;N++){
+                        cache = new Cache(cSize[0], bSize[1], n[1]);
+                        System.out.println("For Block size: " + bSize[1] + " and cache size: " + cSize[0]);    
+                    for (int i = 0; i < dataFile.length ;i++) {
+                        long Tag = cache.Tag(dataFile[i]);
+                        int Index = cache.Index(dataFile[i]);
+                        cache.accessMemory(Index, Tag);
+                    }
+                 }
             }
         }
         

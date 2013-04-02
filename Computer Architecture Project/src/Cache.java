@@ -47,12 +47,12 @@ public class Cache {
     //Checks associativity made by the constructor, then sends in the appropriate index
     public void accessMemory(int index, long tag) {
         memC++;
-        if(N>1){
-                set[index].searchBlocksInSet(index, tag, N);     
-        }
-        else{
-                set[0].searchBlocksInSet(index,tag,N);
-        }
+            if(N>1){
+                    set[index].searchBlocksInSet(index, tag, N);     
+            }
+            else{
+                    set[0].searchBlocksInSet(index,tag,N);
+            }
         }
     
     

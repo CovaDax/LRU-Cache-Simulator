@@ -8,21 +8,17 @@
  * @author Andrew Meyers, Andrew Gari
  */
 
-
 public class Block{
     
     protected long blockTag=0;
     protected boolean blockValid;
     protected int hitB, memB;
-    protected int blockLru=0;
+    protected int identity;
     
     
     public Block(int i) {
-        this.blockLru=i;
+        this.identity=i;
     }
-    
-    
-    
     
     public boolean compareTag(long tag) {
         if(tag==blockTag){
@@ -34,19 +30,10 @@ public class Block{
     }
     
     void setTag(long tag) {
+        
         blockTag=tag;
     }
     
-    void bHitCount(){
-        hitB++;
-        //return hitB;
-    }
-    
-   
-    
-    int bHitAdd(){
-        return hitB;
-    }
  
             
 }   
