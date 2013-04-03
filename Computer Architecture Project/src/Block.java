@@ -11,8 +11,6 @@
 public class Block{
     
     protected long blockTag=0;
-    protected boolean blockValid;
-    protected int hitB, memB;
     protected int identity;
     
     
@@ -30,10 +28,7 @@ public class Block{
     }
     
     void setTag(long tag) {
-        
         blockTag=tag;
     }
-    
- 
             
 }   

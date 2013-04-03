@@ -11,10 +11,12 @@
 public class Cache {
     
         public int blockSize, numSets, numBlocks
-                ,N,offsetWidth,indexWidth,tagWidth, hitC, memC;
+                ,N,offsetWidth,indexWidth,tagWidth;
+        private double hitC=0;
+        private double memC=0;
         public double hitRatio;
         public Set set[];
-        //int[] setsInCache = new int[numSets];
+        protected double miss=0;
     
     public Cache(int cache, int block, int N) {
         blockSize = block;
@@ -38,7 +40,7 @@ public class Cache {
                     set[s] = new Set(N,N,s);
                 }
                 else{
-                    set[s] = new Set(numBlocks, N,s);
+                    set[s] = new Set(numBlocks, N,0);
             }
         }
 
@@ -48,10 +50,10 @@ public class Cache {
     public void accessMemory(int index, long tag) {
         memC++;
             if(N>1){
-                    set[index].searchBlocksInSet(index, tag, N);     
+                    set[index].searchBlocksInSet(N, tag, N);     
             }
             else{
-                    set[0].searchBlocksInSet(index,tag,N);
+                    set[0].searchBlocksInSet(index,tag, 1);
             }
         }
     
@@ -79,21 +81,17 @@ public class Cache {
         return Integer.parseInt(fileIndex, 2);//returns to main
     }
     
-    public double hitRatio(int hitCount, int accessCount){
-        double hit=(double)hitCount/(double)accessCount;
-        return hit;
-    }
-    
-    //Counts the hitCounter of every set and adds them together, then returns to main
-    public int cHitSets() {
+    public void missRatio(){
         for (int i = 0; i < numSets; i++) {
             hitC = hitC + set[i].sHitCount();
         }
-        return hitC;
+        
+//        System.out.println("From Main HIT C:\t" + hitC);
+//        System.out.println("From Main ACCESS C:\t" + memC);
+        double hit=hitC/memC;
+        this.miss = (double)Math.round(((1-hit)*100)*100)/100;
+//        System.out.println("Miss Count =\t" + miss +"%\n\n");
     }
-    //Counts the number of times memory was accessed in every set, then returns to main
-    public int cMemSets() {
-          return memC;
-        }
+
     
     }

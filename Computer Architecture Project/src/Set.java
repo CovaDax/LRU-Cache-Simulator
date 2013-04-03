@@ -11,73 +11,67 @@ import java.util.ArrayList;
 import java.util.List;
 public class Set{
     
-    public int numBlocks=0;
-    protected int hitS;
-    protected Block block[];
-    protected static int setNumber;
+    private int numBlocks=0;
+    double hitS=0;
+    //private Block block[];
+    private static int setNumber;
     protected List<Block> blocks = new ArrayList<Block>();
+    public Block[] direct;
     
     public Set(int numBlocks, int n, int num) {
         this.setNumber = num;
         this.numBlocks=numBlocks;
-        this.block = new Block[numBlocks];
-            for (int x = 0; x < numBlocks; x++) {
+        //this.block = new Block[numBlocks];
+            for (int x=0; x<numBlocks; x++) {
                 blocks.add(new Block(x));
+            }
+            
+            if(n==1){
+                direct=new Block[numBlocks];
             }
   }
     
-    void searchBlocksInSet(int index, long tag, int n) {
-        boolean hitB=false;
-        int blockHit=0;
-        Block tempBlock;
-        
-    if(n==1){//Direct Mapped
-               if(block[index].compareTag(tag)==true){
+    void searchBlocksInSet(int blockNumber, long tag, int numSets) {
+            boolean hitB=false;
+            if(numSets>1){
+                int blockHit=0;
+                for(int i=0;i<numBlocks;i++){
+                    if(blocks.get(i).compareTag(tag)==true){
+//                        blocks.get(i).hitAdd();
+                        hitS++;
+                        hitB=true;
+                        blockHit=i;
+                        break;
+                    }
+                }
+                nWay(blockHit,tag,hitB);
+            }
+  
+            else{
+                if(blocks.get(blockNumber).compareTag(tag)==true){
                     hitS++;
                 }
-                else{
-                   block[index].setTag(tag);
-                }
-    }
-  //==============================================n-WAY=========================      
-    
-    else{
-        //Check for a hit
-        for(int i=0;i<numBlocks;i++){
-            if(blocks.get(i).compareTag(tag)==true){
-                hitB=true;
-                blockHit=blocks.get(i).identity;
-                break;
+                blocks.get(blockNumber).setTag(tag);
             }
-        }
-        
-        if(hitB==true){
-            hitS++;
-            blocks.get(blockHit).setTag(tag);
-            tempBlock=blocks.get(blockHit);
-            blocks.add(0, tempBlock);
-        }
-        
-        else{
-            blocks.get(blocks.size()-1).setTag(tag);
-            tempBlock=blocks.remove(blocks.size()-1);
-            blocks.add(0, tempBlock);
-        }
-        
     }
- }
-    
-    void writeBlock(int blockNumber, long tag, int n) {
-        block[blockNumber].setTag(tag);
-        
-    }
-    
-    int sHitCount() {
-        return hitS;
-    }
-         
  
     
+    void nWay(int Hitindex, long tag, boolean hit){
+        Block tempBlock;
+        if(hit==true){
+                tempBlock=blocks.remove(Hitindex);
+                blocks.add(tempBlock);
+        }
+        else{
+            blocks.get(0).setTag(tag);
+            tempBlock=blocks.remove(0);
+            blocks.add(tempBlock);
+        }
+    }
+    
+    double sHitCount() {
+        return hitS;
+    }
 }
 
 
