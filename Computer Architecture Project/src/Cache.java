@@ -5,9 +5,6 @@
  *  Cache.java Class
  */
 
-
-//import java.util.*;
-
 public class Cache {
     
         public int blockSize, numSets, numBlocks
@@ -69,15 +66,11 @@ public class Cache {
     //Extracts the string of bits from the address that represent the TAG
     public long Tag(String address){
         String fileTag=address.substring(0,tagWidth);
-        
-          // System.out.println("Tag:\t" + fileTag);
         return Long.parseLong(fileTag,2);//returns to main
     }
     //Extracts the string of bits from the address that represent the INDEX
     public int Index(String address){
         String fileIndex = address.substring(tagWidth, tagWidth+indexWidth); 
-        
-          //  System.out.println("Index:\t" + fileIndex);
         return Integer.parseInt(fileIndex, 2);//returns to main
     }
     
@@ -85,12 +78,8 @@ public class Cache {
         for (int i = 0; i < numSets; i++) {
             hitC = hitC + set[i].sHitCount();
         }
-        
-//        System.out.println("From Main HIT C:\t" + hitC);
-//        System.out.println("From Main ACCESS C:\t" + memC);
         double hit=hitC/memC;
         this.miss = (double)Math.round(((1-hit)*100)*100)/100;
-//        System.out.println("Miss Count =\t" + miss +"%\n\n");
     }
 
     

@@ -13,21 +13,12 @@ public class Set{
     
     private int numBlocks=0;
     double hitS=0;
-    //private Block block[];
-    private static int setNumber;
     protected List<Block> blocks = new ArrayList<Block>();
-    public Block[] direct;
     
     public Set(int numBlocks, int n, int num) {
-        this.setNumber = num;
         this.numBlocks=numBlocks;
-        //this.block = new Block[numBlocks];
             for (int x=0; x<numBlocks; x++) {
                 blocks.add(new Block(x));
-            }
-            
-            if(n==1){
-                direct=new Block[numBlocks];
             }
   }
     

@@ -35,8 +35,9 @@ public class cacheSimulator {
         int cSize[] = {1024,2048,4096,8192};
         int bSize[] = {8,16,32};
         int n[] = {1,2,4,8};
-        String file; Long Address;
-        Cache cache = null; readFile f = new readFile();
+        String file;
+        Cache cache = null; 
+        readFile f = new readFile();
         List<Cache> caches=new ArrayList<Cache>();
         String dataFile[];
         
